@@ -73,4 +73,9 @@ openssl genpkey -algorithm RSA -out cert.key -pkeyopt rsa_keygen_bits:2048
 
 # 生成自签名证书，有效期为 3650 天（约 10 年）
 openssl req -new -x509 -key cert.key -out cert.crt -days 3650 -subj "/C=CN/ST=State/L=City/O=Organization/OU=Unit/CN=localhost"
+
+# 一些容器内可能不信任自签证书，加到信任列表即可
+cp /etc/ssl/cert.crt /usr/local/share/ca-certificates/cert.crt
+update-ca-certificates
+curl --cert /etc/ssl/cert.crt --key /etc/ssl/cert.key https://localhost:443/api
 ```
