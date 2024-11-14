@@ -64,3 +64,13 @@ scp fullchain1.pem esxi7:/etc/vmware/ssl/rui.crt
 /etc/init.d/vpxa restart
 
 ```
+
+
+## 自签证书
+```bash
+# 生成私钥
+openssl genpkey -algorithm RSA -out cert.key -pkeyopt rsa_keygen_bits:2048
+
+# 生成自签名证书，有效期为 3650 天（约 10 年）
+openssl req -new -x509 -key cert.key -out cert.crt -days 3650 -subj "/C=CN/ST=State/L=City/O=Organization/OU=Unit/CN=localhost"
+```
