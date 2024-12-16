@@ -13,6 +13,7 @@ sudo bash certbot-manual.sh example.com
 nslookup -q=txt _acme-challenge.example.com
 # 查看证书有效期
 sudo openssl x509 -noout -dates -in /etc/letsencrypt/live/example.com/fullchain.pem
+
 # 测试续签(need --manual-auth-hook auth-hook.sh)
 sudo certbot renew --dry-run
 
@@ -28,9 +29,11 @@ sudo certbot renew --dry-run
 sudo bash aliyun/install-aliyuncli-alidns.sh
 # 配置本地AK，需要从aliyun官网拿到AK
 sudo bash aliyun/conf-aliyun.sh [YourAccessKeyId] [YourAccessKeySecret]
+
 # 手动申请证书,root证书和泛域名证书不能混用
 sudo bash aliyun/certbot-manual-aliyun.sh example.com root --dry-run
 sudo bash aliyun/certbot-manual-aliyun.sh example.com wildcard --dry-run
+
 # 自动更新证书
 sudo bash aliyun/certbot-renew-aliyun.sh --dry-run
 # aliyun自动续签
