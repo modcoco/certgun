@@ -34,6 +34,10 @@ sudo bash aliyun/conf-aliyun.sh [YourAccessKeyId] [YourAccessKeySecret]
 sudo bash aliyun/certbot-manual-aliyun.sh example.com root --dry-run
 sudo bash aliyun/certbot-manual-aliyun.sh example.com wildcard --dry-run
 
+# 复制到当前目录
+sudo  scp -r /etc/letsencrypt/archive/example.co-0003 .
+sudo chown -R user:user example.co-0003
+
 # 自动更新证书
 sudo bash aliyun/certbot-renew-aliyun.sh --dry-run
 # aliyun自动续签
